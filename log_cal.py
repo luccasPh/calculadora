@@ -1,6 +1,6 @@
-from math import*
+from math import *
 
-class Log_Calculadora(object):
+class Log_Cal(object):
 	def calcular(self):
 		try:
 			self.new_conta = format(eval(self.new_conta),".12g")

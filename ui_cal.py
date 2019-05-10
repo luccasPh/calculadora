@@ -11,7 +11,7 @@ from os import path
 import sys
 import platform
 
-class Ui_Calculadora(object):
+class Ui_Cal(object):
     def setupUi(self, Form):
         self.imag = path.join(path.dirname(__file__), 'img')
         Form.setEnabled(True)

@@ -1,10 +1,10 @@
 import sys
 from PyQt5 import QtWidgets
 from cProfile import label
-from Ui_Calculadora import Ui_Calculadora
-from Log_Calculadora import Log_Calculadora
+from ui_cal import Ui_Cal
+from log_cal import Log_Cal
 
-class Frm_Calculadora(QtWidgets.QMainWindow,Ui_Calculadora,Log_Calculadora):
+class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
     def __init__(self):
         super().__init__()
         self.conta = ""
