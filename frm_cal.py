@@ -4,7 +4,8 @@ from cProfile import label
 from ui_cal import Ui_Cal
 from log_cal import Log_Cal
 
-class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
+
+class Frm_Cal(QtWidgets.QMainWindow, Ui_Cal, Log_Cal):
     def __init__(self):
         super().__init__()
         self.conta = ""
@@ -48,9 +49,9 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
         self.btnDivi_2.clicked.connect(self.muda_sinal)
         self.btnRam.clicked.connect(self.digitos_tela)
 
-        self.btnRaiz.clicked.connect(lambda:self.digitos_tela("raiz"))
-        self.btnEleva.clicked.connect(lambda:self.digitos_tela("eleva"))
-        self.btnPi.clicked.connect(lambda:self.digitos_tela("pi"))
+        self.btnRaiz.clicked.connect(lambda: self.digitos_tela("raiz"))
+        self.btnEleva.clicked.connect(lambda: self.digitos_tela("eleva"))
+        self.btnPi.clicked.connect(lambda: self.digitos_tela("pi"))
 
         self.btnMais.clicked.connect(self.operadores_tela)
         self.btnSubi.clicked.connect(self.operadores_tela)
@@ -59,11 +60,11 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
 
         self.btnLimpa.clicked.connect(self.limpar_tela)
         self.btnIgual.clicked.connect(self.resultado)
-               
+
     def resultado(self):
         pa = 0
         pe = 0
-        texto = " "+self.label.text() + " "
+        texto = " " + self.label.text() + " "
         self.conta = " "
         i = 0
         while i < len(texto):
@@ -96,40 +97,40 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
     def limpar_tela(self):
         if self.resul:
             self.ram = self.label.text()
-            self.label2.setText("Ram = "+self.ram)
+            self.label2.setText("Ram = " + self.ram)
         tela = self.label.text()
         try:
-            if tela[len(tela)-1] == " ":
-                new_tela = tela[:len(tela)-3]
-            elif tela[len(tela)-3] == "l":
-                new_tela = tela[:len(tela)-3]
-            elif tela[len(tela)-3] == "o":
-                new_tela = tela[:len(tela)-4]
-            elif tela[len(tela)-2] == "√":
-                new_tela = tela[:len(tela)-2]
-            elif tela[len(tela)-3] == "e":
-                new_tela = tela[:len(tela)-4]
-            elif tela[len(tela)-2] == "s":
-                new_tela = tela[:len(tela)-4]
-            elif tela[len(tela)-4] == "t":
-                new_tela = tela[:len(tela)-4]
-            elif tela[len(tela)-2] == "p":
-                new_tela = tela[:len(tela)-4]
-            elif tela[len(tela)-2] == "i":
-                new_tela = tela[:len(tela)-5]
-            elif tela[len(tela)-2] == "u":
-                new_tela = tela[:len(tela)-5]
-            elif tela[len(tela)-1] == "m":
-                new_tela = tela[:len(tela)-3]
+            if tela[len(tela) - 1] == " ":
+                new_tela = tela[: len(tela) - 3]
+            elif tela[len(tela) - 3] == "l":
+                new_tela = tela[: len(tela) - 3]
+            elif tela[len(tela) - 3] == "o":
+                new_tela = tela[: len(tela) - 4]
+            elif tela[len(tela) - 2] == "√":
+                new_tela = tela[: len(tela) - 2]
+            elif tela[len(tela) - 3] == "e":
+                new_tela = tela[: len(tela) - 4]
+            elif tela[len(tela) - 2] == "s":
+                new_tela = tela[: len(tela) - 4]
+            elif tela[len(tela) - 4] == "t":
+                new_tela = tela[: len(tela) - 4]
+            elif tela[len(tela) - 2] == "p":
+                new_tela = tela[: len(tela) - 4]
+            elif tela[len(tela) - 2] == "i":
+                new_tela = tela[: len(tela) - 5]
+            elif tela[len(tela) - 2] == "u":
+                new_tela = tela[: len(tela) - 5]
+            elif tela[len(tela) - 1] == "m":
+                new_tela = tela[: len(tela) - 3]
             else:
-                 new_tela = tela[:len(tela)-1]
+                new_tela = tela[: len(tela) - 1]
         except:
-             new_tela = tela[:len(tela)-1]
+            new_tela = tela[: len(tela) - 1]
         try:
-            if new_tela[len(new_tela)-1] == "(":
+            if new_tela[len(new_tela) - 1] == "(":
                 self.nao_opera = False
         except:
-            o=1
+            o = 1
         if "." not in new_tela:
             self.ponto = False
         if new_tela == "" or self.resul or new_tela == "0":
@@ -140,11 +141,11 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
         else:
             self.label.setText(new_tela)
             self.zero = False
-        
+
     def operadores_tela(self):
         if self.resul:
             self.ram = self.label.text()
-            self.label2.setText("Ram = "+self.ram)
+            self.label2.setText("Ram = " + self.ram)
             self.resul = False
 
         if self.sender().text() == "-":
@@ -162,14 +163,14 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
                 self.zero = False
                 self.resul = False
                 self.ponto = False
-    
+
     def muda_sinal(self):
         if self.label.text()[0] == " - ":
-            self.label.setText(""+self.label.text()[1:])
+            self.label.setText("" + self.label.text()[1:])
         else:
-            self.label.setText(" - "+self.label.text()[0:])
+            self.label.setText(" - " + self.label.text()[0:])
 
-    def digitos_tela(self,value):
+    def digitos_tela(self, value):
         but = self.sender()
         if but.text() == "ln":
             butao = "ln("
@@ -225,7 +226,10 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
         elif value == "pi":
             butao = "π"
         elif but.text() == ".":
-            if self.label.text()[len(self.label.text())-1] in self.operadores or self.ponto:
+            if (
+                self.label.text()[len(self.label.text()) - 1] in self.operadores
+                or self.ponto
+            ):
                 butao = ""
                 self.zero = False
             else:
@@ -247,8 +251,8 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
         else:
             butao = but.text()
             if but.text() == "(":
-                 self.nao_opera = False
-                 self.muda_operado = False
+                self.nao_opera = False
+                self.muda_operado = False
             elif but.text() == ")" and self.muda_operado:
                 butao = ""
             else:
@@ -257,7 +261,7 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
 
         if self.resul:
             self.ram = self.label.text()
-            self.label2.setText("Ram = "+self.ram)
+            self.label2.setText("Ram = " + self.ram)
             self.resul = False
 
         if self.zero:
@@ -265,6 +269,5 @@ class Frm_Cal(QtWidgets.QMainWindow,Ui_Cal,Log_Cal):
             self.zero = False
             self.ponto = False
         else:
-            novoText = self.label.text()+butao
+            novoText = self.label.text() + butao
             self.label.setText(novoText)
-
